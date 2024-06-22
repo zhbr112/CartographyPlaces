@@ -6,8 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.AddNpgsqlDbContext<UserDbContext>("user-db");
@@ -19,8 +17,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
-
-// Configure the HTTP request pipeline.
 
 app.MapGet("/login", async ([AsParameters] UserDTO userDTO, IUserService userService) =>
 {
