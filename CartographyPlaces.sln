@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34902.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartographyPlaces.AppHost", "CartographyPlaces.AppHost\CartographyPlaces.AppHost.csproj", "{809E0325-5D16-4998-A878-889751301DF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartographyPlaces.ServiceDefaults", "CartographyPlaces.ServiceDefaults\CartographyPlaces.ServiceDefaults.csproj", "{BFA02BA2-316F-43E7-9A83-FB9EA2091A02}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartographyPlaces.AuthAPI", "CartographyPlaces.AuthAPI\CartographyPlaces.AuthAPI.csproj", "{62EAAC1D-1133-4A7D-923C-AE9252637951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{809E0325-5D16-4998-A878-889751301DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809E0325-5D16-4998-A878-889751301DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809E0325-5D16-4998-A878-889751301DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809E0325-5D16-4998-A878-889751301DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFA02BA2-316F-43E7-9A83-FB9EA2091A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA02BA2-316F-43E7-9A83-FB9EA2091A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA02BA2-316F-43E7-9A83-FB9EA2091A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA02BA2-316F-43E7-9A83-FB9EA2091A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62EAAC1D-1133-4A7D-923C-AE9252637951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62EAAC1D-1133-4A7D-923C-AE9252637951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62EAAC1D-1133-4A7D-923C-AE9252637951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62EAAC1D-1133-4A7D-923C-AE9252637951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0261CA11-182C-4F0C-A346-8AE39DB02F9B}
+	EndGlobalSection
+EndGlobal
