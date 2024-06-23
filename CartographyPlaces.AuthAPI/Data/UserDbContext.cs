@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CartographyPlaces.AuthAPI.Models;
+﻿using CartographyPlaces.AuthAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CartographyPlaces.AuthAPI.Data;
 

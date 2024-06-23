@@ -1,10 +1,10 @@
 ﻿namespace CartographyPlaces.AuthAPI.Models;
 
-public class User
+public class User(long id, string username, string photoUrl, string firstName, string? secondName)
 {
-    public required long Id { get; set; }
-    public required string FirstName { get; set; }
-    public string SecondName { get; set; } = "";
-    public required string Username { get; set; }
-    public required string PhotoUrl { get; set; }
+    public long Id { get; set; } = id;
+    public string Username { get; set; } = username;
+    public string PhotoUrl { get; set; } = photoUrl;
+    public string FirstName { get; set; } = firstName;
+    public string? SecondName { get; set; } = secondName;
 }
