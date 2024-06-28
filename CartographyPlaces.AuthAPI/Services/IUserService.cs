@@ -5,5 +5,7 @@ namespace CartographyPlaces.AuthAPI.Services;
 
 public interface IUserService
 {
-    public Task<JwtSecurityToken> LoginUser(User user, string Hash, int Auth_date);
+    public Task<JwtSecurityToken> LoginUserAsync(User user, string Hash, int Auth_date);
+
+    public Task<User> GetUserAsync(Guid id);
 }

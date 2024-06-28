@@ -30,7 +30,7 @@ app.MapGet("/login", async ([AsParameters] UserDTO userDTO, IUserService userSer
 
     try
     {
-        var jwt = await userService.LoginUser(user, userDTO.Hash, userDTO.Auth_date);
+        var jwt = await userService.LoginUserAsync(user, userDTO.Hash, userDTO.Auth_date);
         resultJwt = jwtSecurityTokenHandler.WriteToken(jwt);
     }
     catch (Exception ex)
@@ -39,6 +39,20 @@ app.MapGet("/login", async ([AsParameters] UserDTO userDTO, IUserService userSer
     }
 
     return Results.Ok(resultJwt);
+});
+
+app.MapGet("/{id}", async (Guid id, IUserService userService) =>
+{
+    try
+    {
+        var user = await userService.GetUserAsync(id);
+
+        return Results.Ok(user);
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(ex.Message);
+    }
 });
 
 app.Run();

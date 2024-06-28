@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CartographyPlaces.AuthAPI\CartographyPlaces.AuthAPI.csproj" />
+    <ProjectReference Include="..\UserAPI\UserAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
