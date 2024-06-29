@@ -7,5 +7,5 @@ public interface IUserService
 {
     public Task<JwtSecurityToken> LoginUserAsync(User user, string Hash, int Auth_date);
 
-    public Task<User> GetUserAsync(Guid id);
+    public Task<User> GetUserAsync(long id);
 }

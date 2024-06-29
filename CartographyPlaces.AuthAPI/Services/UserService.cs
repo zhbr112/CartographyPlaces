@@ -26,9 +26,8 @@ public class UserService(UserDbContext db, IHttpContextAccessor httpContextAcces
         var secretKey = SHA256.HashData(Encoding.UTF8.GetBytes(config["botToken"] ??
             throw new ArgumentException("Нет botToken")));
 
-        if (!Convert.ToHexString(HMACSHA256.HashData(secretKey,
-            Encoding.UTF8.GetBytes(dataCheckString)))
-            .Equals(Hash, StringComparison.OrdinalIgnoreCase))
+        if (!Convert.ToHexStringLower(HMACSHA256.HashData(secretKey,
+            Encoding.UTF8.GetBytes(dataCheckString))).Equals(Hash))
             throw new ValidationException("Данные не соответствуют хэшу");
 
         return true;
@@ -38,14 +37,17 @@ public class UserService(UserDbContext db, IHttpContextAccessor httpContextAcces
     {
         ValidateUser(user, Hash, Auth_date);
         if (await db.Users.FirstOrDefaultAsync(x => x.Id == user.Id) is null)
+        {
             await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+        }
 
         var claims = new List<Claim> {
-            new ("Id", user.Id.ToString()) ,
-            new ("FirstName", user.FirstName),
-            new ("SecondName", user.SecondName ?? ""),
-            new ("Username", user.Username),
-            new ("PhotoUrl", user.PhotoUrl)
+            new ("id", user.Id.ToString()) ,
+            new ("firstname", user.FirstName),
+            new ("secondname", user.SecondName ?? ""),
+            new (ClaimTypes.Name, user.Username),
+            new ("photourl", user.PhotoUrl)
         };
 
         var jwt = new JwtSecurityToken(
@@ -54,13 +56,13 @@ public class UserService(UserDbContext db, IHttpContextAccessor httpContextAcces
                 claims: claims,
                 expires: DateTime.UtcNow.Add(TimeSpan.FromDays(1)),
                 signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:JwtKey"]
-                    ?? throw new ArgumentException("Нет jwtKey"))),
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Symkey"]
+                    ?? throw new ArgumentException("Нет Symkey"))),
                     SecurityAlgorithms.HmacSha256));
         return jwt;
     }
 
-    public async Task<User> GetUserAsync(Guid id)
+    public async Task<User> GetUserAsync(long id)
     {
         var user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id))
             ?? throw new ArgumentException("Такого пользователя не существует");

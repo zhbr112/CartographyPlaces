@@ -1,15 +1,18 @@
 using CartographyPlaces.AuthAPI.Data;
 using CartographyPlaces.AuthAPI.Models;
 using CartographyPlaces.AuthAPI.Services;
+using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
+var config = builder.Configuration;
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.AddNpgsqlDbContext<UserDbContext>("user-db");
+builder.Services.AddCors();
+
+builder.Services.AddDbContext<UserDbContext>(options => options.UseNpgsql(config.GetConnectionString("Postgres")));
 
 builder.Services.AddHttpContextAccessor();
 
@@ -19,7 +22,12 @@ builder.Services.AddSingleton<JwtSecurityTokenHandler>();
 
 var app = builder.Build();
 
-app.MapDefaultEndpoints();
+app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                                                        //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
+                    .AllowCredentials());
 
 app.MapGet("/login", async ([AsParameters] UserDTO userDTO, IUserService userService, JwtSecurityTokenHandler jwtSecurityTokenHandler) =>
 {
@@ -41,7 +49,7 @@ app.MapGet("/login", async ([AsParameters] UserDTO userDTO, IUserService userSer
     return Results.Ok(resultJwt);
 });
 
-app.MapGet("/{id}", async (Guid id, IUserService userService) =>
+app.MapGet("/{id}", async (long id, IUserService userService) =>
 {
     try
     {

@@ -1,3 +1,0 @@
-{
-  "microsoft.net.sdk.aspire": "8.0.0-preview.6.24214.1/8.0.100"
-}
