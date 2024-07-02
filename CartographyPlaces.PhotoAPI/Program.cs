@@ -90,6 +90,11 @@ app.MapGet("/test", async (PlacePhotoDbContext db) =>
     return Results.Ok(photos);
 });
 
+app.MapGet("/test2", async (PlacePhotoDbContext db) =>
+{   
+    return Results.Ok(config["Jwt:Audience"]);
+});
+
 app.Run();
 
 public record class Photo(Guid Id, string FileName);
