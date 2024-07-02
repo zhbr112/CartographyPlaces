@@ -1,8 +1,8 @@
 using CartographyPlaces.AuthAPI.Data;
-using CartographyPlaces.AuthAPI.Models;
 using CartographyPlaces.PhotoAPI.Models;
-using JwtUserAuth;
 using Microsoft.EntityFrameworkCore;
+using TgAuthTest.Data;
+using TgAuthTest;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +11,7 @@ var config = builder.Configuration;
 
 builder.Services.AddCors();
 
-builder.AddJwtAuth<User>();
+builder.AddJwtAuth();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -23,7 +23,7 @@ builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-app.UseJwtAuth<User>();
+app.UseJwtAuth();
 
 app.UseCors(x => x
                     .AllowAnyMethod()
