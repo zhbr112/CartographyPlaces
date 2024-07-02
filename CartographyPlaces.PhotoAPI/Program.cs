@@ -87,8 +87,8 @@ app.MapGet("/{placeId}", async (Guid placeId, PlacePhotoDbContext db) =>
 app.MapGet("/test", async (PlacePhotoDbContext db) =>
 {
     var photos = await db.PlacePhoto.ToListAsync();
-    return Results.Ok(config["Jwt:Audience"]);
-    return Results.Ok(photos);
+    return Results.Ok(config["Jwt:Audience"] + " hello");
+    //return Results.Ok(photos);
 });
 
 app.MapGet("/testt", async (PlacePhotoDbContext db) =>
