@@ -23,7 +23,7 @@ public class UserService(UserDbContext db, IHttpContextAccessor httpContextAcces
             .OrderBy(x => x.Key)
             .Select(x => $"{x.Key}={x.Value}"));
 
-        var secretKey = SHA256.HashData(Encoding.UTF8.GetBytes(config["Jwt:botToken"] ??
+        var secretKey = SHA256.HashData(Encoding.UTF8.GetBytes(config["botToken"] ??
             throw new ArgumentException("Нет botToken")));
 
         if (!Convert.ToHexStringLower(HMACSHA256.HashData(secretKey,
