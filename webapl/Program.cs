@@ -37,7 +37,7 @@ async Task<User> GetUser(long id)
 {
     using var http = new HttpClient();
 
-    return await http.GetFromJsonAsync<User>($"http://zhbr112.ru/user/{id}");
+    return await http.GetFromJsonAsync<User>($"https://baikal.zhbr112.ru/api/user/{id}");
 }
 
 
